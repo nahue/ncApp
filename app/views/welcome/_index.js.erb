@@ -1,0 +1,123 @@
+<%
+api_v1_events_path = "prueba/"
+%>
+$(function() {
+    kendo.culture('es');
+    $("#scheduler").kendoScheduler({
+        height: 600,
+        views: [
+            "day",
+            "week",
+            { type: "month", selected: true },
+            "agenda"
+        ],
+        timezone: "Etc/UTC",
+        dataSource: {
+            batch: true,
+            transport: {
+                read: {
+                    url: "<%= api_v1_events_path %>.json",
+                    dataType: "jsonp"
+                },
+                update: {
+                    url: "<%= api_v1_events_path %>/update",
+                    dataType: "jsonp",
+                    type: 'PUT'
+                },
+                create: {
+                    url: "<%= api_v1_events_path %>",
+                    dataType: "jsonp",
+                    type: 'POST'
+                },
+                destroy: {
+                    url: "<%= api_v1_events_path %>/destroy",
+                    dataType: "jsonp",
+                    type: 'DELETE'
+                }
+            },
+            schema: {
+                model: {
+                    id: "id",
+                    fields: {
+                        id: { from: "id", type: "number" },
+                        title: { from: "title", defaultValue: "", validation: { required: true } },
+                        start: { type: "date", from: "start" },
+                        end: { type: "date", from: "end" },
+                        startTimezone: { from: "startTimezone" },
+                        endTimezone: { from: "endTimezone" },
+                        description: { from: "description" },
+                        recurrenceId: { from: "recurrenceId" },
+                        recurrenceRule: { from: "recurrenceRule" },
+                        recurrenceException: { from: "recurrenceException" },
+                        isAllDay: { type: "boolean", from: "isAllDay" },
+                        <%= resource_type_fields.html_safe %>
+                    }
+                }
+            }
+        },
+        resources: <%= print_resources.html_safe %>,
+        editable: {
+            confirmation: "Esta seguro de eliminar este turno?"
+        },
+        messages: {
+            views: {
+                day: "Dia",
+                week: "Semana",
+                month: "Mes"
+            },
+            editor: {
+                editorTitle: "Editar turno",
+                title: "Titulo",
+                start: "Inicio",
+                end: "Fin",
+                allDayEvent: "Todo el dia",
+                repeat: "Repetir",
+                description: "Descripcion"
+            },
+            recurrenceEditor: {
+                frequencies: {
+                    daily: "Diariamente",
+                    monthly: "Mensualmente",
+                    never: "Nunca",
+                    weekly: "Semanalmente",
+                    yearly: "Anualmente"
+                },
+                daily: {
+                    repeatEvery: "Repetir cada: ",
+                    interval: " dia(s)"
+                },
+                weekly: {
+                    repeatEvery: "Repetir cada: ",
+                    interval: " dia(s)"
+                },
+                end: {
+                    never: " Nunca",
+                    after: " DespuÃ©s de ",
+                    occurrence: " ocurrencias(s).",
+                    on: " En"
+                }
+            },
+            event: "Turno",
+            today: "Hoy",
+            save: "Guardar",
+            cancel: "Cancelar",
+            destroy: "Eliminar",
+            deleteWindowTitle: "Eliminar turno"
+        }
+    });
+    /*
+     $("#people :checkbox").change(function(e) {
+     var checked = $.map($("#people :checked"), function(checkbox) {
+     return parseInt($(checkbox).val());
+     });
+
+     var scheduler = $("#scheduler").data("kendoScheduler");
+
+     scheduler.dataSource.filter({
+     operator: function(task) {
+     return $.inArray(task.ownerId, checked) >= 0;
+     }
+     });
+     });
+     */
+});

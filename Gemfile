@@ -29,6 +29,7 @@ group :doc do
   gem 'sdoc', require: false
 end
 
+gem 'kaminari'
 gem 'devise'
 gem 'omniauth'
 gem 'omniauth-twitter'

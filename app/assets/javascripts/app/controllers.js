@@ -5,5 +5,8 @@ angular.module('myApp.controllers', [])
 
   })
   .controller('EventsController', function($scope) {
-
+    $scope.$on('$viewContentLoaded', function(event){
+        console.log("Cargado");
+        console.log($('#scheduler'));
+    });
   });

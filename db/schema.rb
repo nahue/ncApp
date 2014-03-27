@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140326014745) do
+ActiveRecord::Schema.define(version: 20140327192721) do
 
   create_table "authorizations", force: true do |t|
     t.string   "provider"
@@ -25,6 +25,48 @@ ActiveRecord::Schema.define(version: 20140326014745) do
     t.datetime "updated_at"
   end
 
+  create_table "events", force: true do |t|
+    t.string   "title"
+    t.datetime "start"
+    t.datetime "end"
+    t.string   "startTimezone"
+    t.string   "endTimezone"
+    t.string   "description"
+    t.integer  "recurrenceId"
+    t.string   "recurrenceRule"
+    t.string   "recurrenceException"
+    t.boolean  "isAllDay"
+    t.integer  "resource_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "events", ["resource_id"], name: "index_events_on_resource_id"
+
+  create_table "events_resources", force: true do |t|
+    t.integer "event_id"
+    t.integer "resource_id"
+  end
+
+  create_table "resource_types", force: true do |t|
+    t.string   "title"
+    t.boolean  "multiple"
+    t.string   "field"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "resources", force: true do |t|
+    t.string   "text"
+    t.string   "value"
+    t.string   "color"
+    t.integer  "resource_type_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "resources", ["resource_type_id"], name: "index_resources_on_resource_type_id"
+
   create_table "shares", force: true do |t|
     t.integer  "from_user_id"
     t.integer  "to_user_id"
@@ -35,21 +77,27 @@ ActiveRecord::Schema.define(version: 20140326014745) do
   end
 
   create_table "users", force: true do |t|
-    t.string   "name"
-    t.string   "email",                  default: "", null: false
-    t.string   "encrypted_password",     default: "", null: false
+    t.string   "username",               default: "",    null: false
+    t.string   "email",                  default: "",    null: false
+    t.string   "encrypted_password",     default: "",    null: false
+    t.boolean  "admin",                  default: false, null: false
     t.string   "reset_password_token"
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
-    t.integer  "sign_in_count",          default: 0,  null: false
+    t.integer  "sign_in_count",          default: 0,     null: false
     t.datetime "current_sign_in_at"
     t.datetime "last_sign_in_at"
     t.string   "current_sign_in_ip"
     t.string   "last_sign_in_ip"
+    t.string   "confirmation_token"
+    t.datetime "confirmed_at"
+    t.datetime "confirmation_sent_at"
+    t.string   "unconfirmed_email"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
+  add_index "users", ["confirmation_token"], name: "index_users_on_confirmation_token", unique: true
   add_index "users", ["email"], name: "index_users_on_email", unique: true
   add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
 

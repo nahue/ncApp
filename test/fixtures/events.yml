@@ -1,0 +1,25 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  title: MyString
+  start: 2014-03-27 16:24:59
+  end: 2014-03-27 16:24:59
+  startTimezone: MyString
+  : 
+  : 
+  : 
+  : 
+  : 
+  : 
+
+two:
+  title: MyString
+  start: 2014-03-27 16:24:59
+  end: 2014-03-27 16:24:59
+  startTimezone: MyString
+  : 
+  : 
+  : 
+  : 
+  : 
+  : 
