@@ -10,5 +10,8 @@
  *
  *= require_self
  *= require framework
+ *= require proui/plugins
+ *= require proui/main
+ *= require proui/themes
  *= require_tree .
  */
