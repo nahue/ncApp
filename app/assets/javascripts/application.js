@@ -13,10 +13,15 @@
 //= require jquery
 //= require jquery_ujs
 //= require modernizr-2.7.1-respond-1.4.2.min
+//= require kendo.web.min
+//= require kendo.culture.es.min
 //= require angular
 //= require angular-route
 //= require angular-resource
+//= require angular-kendo
 //= require proui/plugins
 //= require proui/app
 //= require proui/pages/index
 //= require_tree .
+
+kendo.culture('es');

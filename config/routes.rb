@@ -1,6 +1,8 @@
 Server::Application.routes.draw do
   namespace :api do
-    resource :shares
+    namespace :v1 do
+      resources :events
+    end
   end
 
   devise_for :users,

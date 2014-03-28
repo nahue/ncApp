@@ -1,9 +1,10 @@
 <%
 api_v1_events_path = "prueba/"
 %>
-$(function() {
-    kendo.culture('es');
-    $("#scheduler").kendoScheduler({
+
+//    kendo.culture('es');
+//    $("#scheduler").kendoScheduler({
+window.kendo_scheduler = kendo.observable({
         height: 600,
         views: [
             "day",
@@ -105,6 +106,8 @@ $(function() {
             deleteWindowTitle: "Eliminar turno"
         }
     });
+
+kendo.bind($("#scheduler"), kendo_scheduler);
     /*
      $("#people :checkbox").change(function(e) {
      var checked = $.map($("#people :checked"), function(checkbox) {
@@ -120,4 +123,3 @@ $(function() {
      });
      });
      */
-});

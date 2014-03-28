@@ -37,6 +37,9 @@ gem 'uuidtools'
 gem 'angularjs-rails'
 gem 'ngmin-rails'
 gem 'bootstrap-sass'
+gem 'simple_form'
+gem 'simple_form-magic_submit'
+gem 'rabl'
 # Use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.1.2'
 

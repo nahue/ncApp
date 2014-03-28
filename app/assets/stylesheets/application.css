@@ -10,6 +10,8 @@
  *
  *= require_self
  *= require framework
+ *= require kendo.common.min
+ *= require kendo.bootstrap.min
  *= require proui/plugins
  *= require proui/main
  *= require proui/themes

@@ -1,4 +1,4 @@
-var myApp = angular.module('myApp', ['ui.router', 'ngResource', 'myApp.controllers','myApp.services','myApp.directives']);
+var myApp = angular.module('myApp', ['ui.router', 'ngResource', 'kendo.directives', 'myApp.controllers','myApp.services','myApp.directives']);
 
 myApp.config(function($stateProvider, $urlRouterProvider) {
   $urlRouterProvider.otherwise('/');
